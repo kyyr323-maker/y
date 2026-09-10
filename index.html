@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KYYZ Reaction Dashboard - Neo-Brutalism</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', Courier, monospace, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f0;
+      color: #000;
+      padding: 15px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Header Neo-Brutalism */
+    header {
+      background: #ffde59;
+      border: 4px solid #000;
+      box-shadow: 6px 6px 0px #000;
+      padding: 20px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-top: 5px;
+      color: #333;
+    }
+
+    /* Navigasi 3 Menu */
+    .nav-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .nav-btn {
+      flex: 1;
+      background: #fff;
+      border: 3px solid #000;
+      box-shadow: 4px 4px 0px #000;
+      padding: 12px 5px;
+      font-weight: 900;
+      cursor: pointer;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      transition: 0.05s;
+    }
+
+    .nav-btn:active, .nav-btn.active {
+      background: #ff99c8;
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    /* Neo-Brutalist Card */
+    .card {
+      background: #ffffff;
+      border: 4px solid #000;
+      box-shadow: 8px 8px 0px #000;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 4px;
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      font-weight: 900;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      border-bottom: 3px solid #000;
+      padding-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: 900;
+      margin-bottom: 5px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 3px solid #000;
+      background: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 3px 3px 0px #000;
+      outline: none;
+    }
+
+    input:focus {
+      background: #fffdf0;
+    }
+
+    .btn-action {
+      background: #b9fbc0;
+      border: 3px solid #000;
+      box-shadow: 4px 4px 0px #000;
+      padding: 12px;
+      width: 100%;
+      font-weight: 900;
+      font-size: 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: 0.05s;
+    }
+
+    .btn-action:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    /* Saluran Resmi Card */
+    .official-box {
+      background: #a0c4ff;
+      border: 3px solid #000;
+      padding: 12px;
+      margin-bottom: 20px;
+      box-shadow: 4px 4px 0px #000;
+      font-weight: bold;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .official-box a {
+      background: #000;
+      color: #fff;
+      padding: 6px 10px;
+      text-decoration: none;
+      font-size: 0.75rem;
+      border: 2px solid #000;
+    }
+
+    /* Live Preview ala WA Message Card */
+    .preview-container {
+      background: #e9ecef;
+      border: 3px solid #000;
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 4px 4px 0px #000;
+    }
+
+    .preview-title {
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    .wa-mockup {
+      background: #dcf8c6;
+      border: 2px solid #000;
+      padding: 12px;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .wa-mockup-header {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: #128c7e;
+      margin-bottom: 4px;
+    }
+
+    .wa-mockup-text {
+      font-size: 0.85rem;
+      font-weight: bold;
+      word-break: break-all;
+      margin-bottom: 8px;
+    }
+
+    .wa-mockup-reaction {
+      display: inline-block;
+      background: #fff;
+      border: 2px solid #000;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 1rem;
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    /* Leaderboard & History Table */
+    .brutal-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.8rem;
+    }
+
+    .brutal-table th, .brutal-table td {
+      border: 2px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .brutal-table th {
+      background: #ffde59;
+      font-weight: 900;
+    }
+
+    .brutal-table td {
+      background: #fff;
+      font-weight: bold;
+    }
+
+    /* Badge Limit */
+    .limit-badge {
+      background: #ffb703;
+      border: 3px solid #000;
+      padding: 8px 12px;
+      font-weight: 900;
+      font-size: 0.8rem;
+      display: block;
+      margin-bottom: 15px;
+      box-shadow: 3px 3px 0px #000;
+    }
+
+    /* Tier Pricing Cards (Buy VIP) */
+    .tier-card {
+      background: #fff;
+      border: 3px solid #000;
+      box-shadow: 5px 5px 0px #000;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .tier-name {
+      font-size: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .tier-price {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #d90429;
+      margin: 5px 0 10px 0;
+    }
+
+    .tier-desc {
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .btn-buy {
+      background: #ff595e;
+      color: #fff;
+      border: 2px solid #000;
+      box-shadow: 3px 3px 0px #000;
+      padding: 8px 12px;
+      font-weight: 900;
+      text-decoration: none;
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .btn-buy:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px #000;
+    }
+
+    .alert {
+      padding: 10px;
+      border: 2px solid #000;
+      font-weight: 900;
+      margin-bottom: 15px;
+      font-size: 0.8rem;
+      box-shadow: 3px 3px 0px #000;
+    }
+    .alert-error { background: #ff595e; color: #fff; }
+    .alert-success { background: #8ac926; color: #000; }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>KYYZ SYSTEM</h1>
+      <p>WhatsApp Channel Reaction Dashboard</p>
+    </header>
+
+    <!-- Navigasi 3 Menu -->
+    <div class="nav-bar">
+      <button class="nav-btn active" onclick="switchTab('home')">Home</button>
+      <button class="nav-btn" onclick="switchTab('vip')">VIP Panel</button>
+      <button class="nav-btn" onclick="switchTab('buy')">Buy VIP</button>
+    </div>
+
+    <!-- TAB 1: HOME -->
+    <div id="tab-home" class="card">
+      <h2>Free Dashboard</h2>
+      
+      <!-- Saluran Resmi -->
+      <div class="official-box">
+        <span>📢 Saluran Resmi: KYYZ NEWS</span>
+        <a href="https://whatsapp.com/channel/0029VaZ..." target="_blank">Kunjungi</a>
+      </div>
+
+      <div class="limit-badge" id="free-limit-text">Sisa Limit Free Hari Ini: 3 / 3</div>
+      
+      <div id="home-alert"></div>
+
+      <div class="form-group">
+        <label>URL Saluran WhatsApp</label>
+        <input type="text" id="home-link" placeholder="https://whatsapp.com/channel/...">
+      </div>
+
+      <div class="form-group">
+        <label>Emoji Reaksi (Ketik Bebas / Contoh: 🤩, 🔥, 👍)</label>
+        <input type="text" id="home-emoji" placeholder="🤩" maxlength="4" value="🤩">
+      </div>
+
+      <button class="btn-action" onclick="executeFreeReaction()">Kirim Reaksi (Free)</button>
+
+      <!-- Live Preview ala WhatsApp Message -->
+      <div class="preview-container">
+        <div class="preview-title">Live Preview Pesan WhatsApp:</div>
+        <div class="wa-mockup">
+          <div class="wa-mockup-header">WhatsApp Channel Post</div>
+          <div class="wa-mockup-text" id="prev-link-text">https://whatsapp.com/channel/...</div>
+          <div class="wa-mockup-reaction" id="prev-emoji-icon">🤩</div>
+        </div>
+      </div>
+
+      <!-- Leaderboard & List Data -->
+      <h2 style="margin-top: 25px; font-size: 0.95rem;">🏆 Leaderboard Reaction</h2>
+      <table class="brutal-table" id="leaderboard-table">
+        <tr>
+          <th>Peringkat</th>
+          <th>Nama Saluran</th>
+          <th>Total Reaksi</th>
+        </tr>
+        <!-- Diisi JS -->
+      </table>
+
+      <h2 style="margin-top: 25px; font-size: 0.95rem;">📋 List Data Pengguna Reaksi</h2>
+      <table class="brutal-table" id="history-table">
+        <tr>
+          <th>User</th>
+          <th>Channel</th>
+          <th>Emoji</th>
+          <th>Waktu</th>
+        </tr>
+        <!-- Diisi JS -->
+      </table>
+    </div>
+
+    <!-- TAB 2: VIP PANEL -->
+    <div id="tab-vip" class="card hidden">
+      <h2>VIP Control Center</h2>
+      
+      <!-- Bagian Terkunci -->
+      <div id="vip-lock-view">
+        <div class="alert alert-error">AKSES TERKUNCI! Masukkan VIP Key yang valid.</div>
+        <div class="form-group">
+          <label>Masukkan VIP Key Anda</label>
+          <input type="text" id="input-vip-key" placeholder="Contoh: KYY-BASIC-1111">
+        </div>
+        <button class="btn-action" style="background:#ff99c8;" onclick="verifyVipKey()">Unlock VIP Panel</button>
+      </div>
+
+      <!-- Bagian Terbuka -->
+      <div id="vip-active-view" class="hidden">
+        <div class="alert alert-success" id="vip-status-banner">STATUS: VIP AKTIF</div>
+        
+        <div class="limit-badge" id="vip-quota-badge">Kuota VIP Sisa: 30 / 30</div>
+
+        <div class="form-group">
+          <label>URL Saluran VIP Target</label>
+          <input type="text" id="vip-link" placeholder="https://whatsapp.com/channel/...">
+        </div>
+
+        <div class="form-group">
+          <label>Emoji VIP Bebas</label>
+          <input type="text" id="vip-emoji" value="🚀" maxlength="4">
+        </div>
+
+        <button class="btn-action" style="background: #ffde59;" onclick="executeVipReaction()">Kirim Reaksi VIP (Unlimited Speed)</button>
+      </div>
+    </div>
+
+    <!-- TAB 3: BUY VIP (Direct to WA Admin: 6288275775946) -->
+    <div id="tab-buy" class="card">
+      <h2>Pilih Paket VIP Key</h2>
+      <p style="font-size: 0.8rem; font-weight: bold; margin-bottom: 15px;">
+        Klik tombol beli untuk langsung terhubung ke WhatsApp Owner (**KYY**).
+      </p>
+
+      <!-- Tier Basic -->
+      <div class="tier-card">
+        <div class="tier-name">1. Basic Tier</div>
+        <div class="tier-price">Rp 10.000</div>
+        <div class="tier-desc">30 Limit Reaksi / Hari • Standard Speed</div>
+        <a href="" id="wa-basic" target="_blank" class="btn-buy">Beli via WhatsApp</a>
+      </div>
+
+      <!-- Tier Standard -->
+      <div class="tier-card" style="background: #e9ff70;">
+        <div class="tier-name">2. Standard Tier</div>
+        <div class="tier-price">Rp 15.000</div>
+        <div class="tier-desc">60 Limit Reaksi / Hari • High Speed</div>
+        <a href="" id="wa-standard" target="_blank" class="btn-buy" style="background: #000; color: #fff;">Beli via WhatsApp</a>
+      </div>
+
+      <!-- Tier Premium -->
+      <div class="tier-card" style="background: #ff99c8;">
+        <div class="tier-name">3. Premium Tier</div>
+        <div class="tier-price">Rp 25.000</div>
+        <div class="tier-desc">100 Limit Reaksi / Hari • Turbo Speed & Custom Emoji</div>
+        <a href="" id="wa-premium" target="_blank" class="btn-buy" style="background: #fff; color: #000;">Beli via WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let adminWaNumber = "6288275775946";
+
+    // --- NAVIGASI TAB ---
+    function switchTab(tabName) {
+      document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+      if (tabName === 'home') {
+        document.getElementById('tab-home').classList.remove('hidden');
+        event.target.classList.add('active');
+        fetchDashboardData();
+      } else if (tabName === 'vip') {
+        document.getElementById('tab-vip').classList.remove('hidden');
+        event.target.classList.add('active');
+      } else if (tabName === 'buy') {
+        document.getElementById('tab-buy').classList.remove('hidden');
+        event.target.classList.add('active');
+      }
+    }
+
+    // --- FETCH DATA DASHBOARD (Leaderboard & History & WA Link) ---
+    async function fetchDashboardData() {
+      try {
+        const res = await fetch('/api/dashboard-data');
+        const data = await res.json();
+        
+        adminWaNumber = data.adminWa;
+        setupWaLinks();
+
+        // Render Leaderboard
+        let lbHtml = `<tr><th>Peringkat</th><th>Nama Saluran</th><th>Total Reaksi</th></tr>`;
+        data.leaderboard.forEach(item => {
+          lbHtml += `<tr><td>#${item.rank}</td><td>${item.channel}</td><td>${item.total}${item.topEmoji}</td></tr>`;
+        });
+        document.getElementById('leaderboard-table').innerHTML = lbHtml;
+
+        // Render History List
+        let histHtml = `<tr><th>User</th><th>Channel</th><th>Emoji</th><th>Waktu</th></tr>`;
+        data.history.forEach(item => {
+          histHtml += `<tr><td>${item.user}</td><td style="word-break:break-all;">${item.link}</td><td>${item.emoji}</td><td>${item.time}</td></tr>`;
+        });
+        document.getElementById('history-table').innerHTML = histHtml;
+      } catch (err) {
+        console.error("Gagal mengambil data dashboard");
+      }
+    }
+
+    // Setup WhatsApp Auto Message Links
+    function setupWaLinks() {
+      document.getElementById('wa-basic').href = `https://wa.me/$(6288275775946}?text=Halo%20Kyy,%20saya%20mau%20beli%20VIP%20Key%20tier%20BASIC%20(Rp10.000).%20Mohon%20instruksinya.`;
+      document.getElementById('wa-standard').href = `https://wa.me/${adminWaNumber}?text=Halo%20Kyy,%20saya%20mau%20beli%20VIP%20Key%20tier%20STANDARD%20(Rp15.000).%20Mohon%20instruksinya.`;
+      document.getElementById('wa-premium').href = `https://wa.me/${adminWaNumber}?text=Halo%20Kyy,%20saya%20mau%20beli%20VIP%20Key%20tier%20PREMIUM%20(Rp25.000).%20Mohon%20instruksinya.`;
+    }
+
+    // --- SISTEM LIMIT FREE (3 KALI SEHARI) ---
+    const FREE_LIMIT_MAX = 3;
+    function getTodayKey() {
+      return 'kyyz_free_neo_' + new Date().toISOString().slice(0, 10);
+    }
+
+    function checkFreeLimit() {
+      let used = localStorage.getItem(getTodayKey()) || 0;
+      let remaining = FREE_LIMIT_MAX - parseInt(used);
+      if (remaining < 0) remaining = 0;
+      document.getElementById('free-limit-text').innerText = `Sisa Limit Free Hari Ini: ${remaining} /${FREE_LIMIT_MAX}`;
+      return remaining;
+    }
+
+    // Live Preview Listener
+    const homeLinkInput = document.getElementById('home-link');
+    const homeEmojiInput = document.getElementById('home-emoji');
+
+    homeLinkInput.addEventListener('input', (e) => {
+      document.getElementById('prev-link-text').innerText = e.target.value || 'https://whatsapp.com/channel/...';
+    });
+    homeEmojiInput.addEventListener('input', (e) => {
+      document.getElementById('prev-emoji-icon').innerText = e.target.value || '🤩';
+    });
+
+    async function executeFreeReaction() {
+      const remaining = checkFreeLimit();
+      const link = homeLinkInput.value.trim();
+      const emoji = homeEmojiInput.value.trim();
+      const alertBox = document.getElementById('home-alert');
+
+      if (!link || !emoji) {
+        alertBox.innerHTML = `<div class="alert alert-error">Link saluran dan emoji wajib diisi!</div>`;
+        return;
+      }
+      if (remaining <= 0) {
+        alertBox.innerHTML = `<div class="alert alert-error">Limit harian Free Anda sudah habis! Silakan beli VIP Key.</div>`;
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/send-reaction', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ link, emoji, userType: "Free User" })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          let currentUsed = parseInt(localStorage.getItem(getTodayKey()) || 0);
+          localStorage.setItem(getTodayKey(), currentUsed + 1);
+          checkFreeLimit();
+          alertBox.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+          fetchDashboardData();
+        }
+      } catch (err) {
+        alertBox.innerHTML = `<div class="alert alert-error">Gagal menyambung ke server!</div>`;
+      }
+    }
+
+    // --- VERIFIKASI VIP KEY ---
+    async function verifyVipKey() {
+      const apiKey = document.getElementById('input-vip-key').value.trim();
+      try {
+        const res = await fetch('/api/validate-vip', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ apiKey })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          document.getElementById('vip-lock-view').classList.add('hidden');
+          document.getElementById('vip-active-view').classList.remove('hidden');
+          document.getElementById('vip-status-banner').innerText = `STATUS: AKTIF (${data.tierName})`;
+          document.getElementById('vip-quota-badge').innerText = `Kuota VIP Sisa: ${data.maxLimit} /${data.maxLimit}`;
+          
+          sessionStorage.setItem('vip_active', 'true');
+          sessionStorage.setItem('vip_tier', data.tierName);
+        } else {
+          alert(data.message);
+        }
+      } catch (err) {
+        alert('Koneksi server gagal.');
+      }
+    }
+
+    window.onload = () => {
+      checkFreeLimit();
+      fetchDashboardData();
+      if (sessionStorage.getItem('vip_active') === 'true') {
+        document.getElementById('vip-lock-view').classList.add('hidden');
+        document.getElementById('vip-active-view').classList.remove('hidden');
+        document.getElementById('vip-status-banner').innerText = `STATUS: AKTIF (${sessionStorage.getItem('vip_tier')})`;
+      }
+    };
+
+    async function executeVipReaction() {
+      const link = document.getElementById('vip-link').value.trim();
+      const emoji = document.getElementById('vip-emoji').value.trim();
+      const tier = sessionStorage.getItem('vip_tier') || 'VIP';
+
+      if (!link || !emoji) {
+        alert('Link saluran dan emoji wajib diisi!');
+        return;
+      }
+
+      const res = await fetch('/api/send-reaction', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ link, emoji, userType: tier })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(data.message + ' 🚀');
+        fetchDashboardData();
+      }
+    }
+  </script>
+
+</body>
+</html>
